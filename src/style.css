@@ -3,7 +3,14 @@ html, body {
   "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", 
   "Fira Sans", "Droid Sans", "Helvetica Neue", 
   sans-serif;
-	font-weight: 400;
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+p {
+  line-height: 1.4;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .app {
@@ -34,7 +41,7 @@ h1 {
 
 .frame {
   border: 1px solid #999;
-  background-color: rgba(0, 0, 0, 0.2 );
+  background-color: rgba(0, 0, 0, 0.1);
   border-radius: 5px;
   position: absolute;
 }
@@ -54,9 +61,20 @@ h1 {
 
 .resolutions__label {
   text-align: left;
+  padding-right: 20px;
 }
 
 .design-dimensions__label {
   display: block;
   font-weight: bold;
+}
+
+.percentage {
+  width: 50px;
+}
+
+.results {
+  background-color: lightgoldenrodyellow;
+  padding: 10px;
+  margin-right: 10px;
 }

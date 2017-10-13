@@ -18,11 +18,41 @@ export default class DesignDimensions extends Component {
     });
   }
 
+  renderResults() {
+    if (this.state.width < 0 || this.state.height < 0) {
+      return null;
+    }
+
+    let scrollWidthPercentage = 0;
+    let scrollHeightPercentage = 0;
+
+    const totalPercentage = Object.values(this.props.screenResolutions).reduce((sum, res) => {
+      return sum + res.percentage; 
+    }, 0);
+
+    Object.values(this.props.screenResolutions).map((res) => {
+      if (this.state.width > res.width) {
+        scrollWidthPercentage += res.percentage;
+      }
+
+      if (this.state.height > res.height) {
+        scrollHeightPercentage += res.percentage;
+      }
+    });    
+
+    return (
+      <p class="results">
+        The screen resolutions provided represent <strong>{totalPercentage}% of all your users' screen resolutions</strong>.
+        Of all your users, <strong>{scrollWidthPercentage}% will have to scroll horizontally</strong>, <strong>{scrollHeightPercentage}% will have to scroll vertically</strong>.
+      </p>
+    )
+  }
+
   render(props, state) {
     return (
       <div class="design-dimensions">
         <h2>Your design</h2>
-        <label class="design-dimensions__label" for="design-dimensions">Screen size</label>
+        <label class="design-dimensions__label" for="design-dimensions">Screen resolution</label>
         <ScreenResolutionInput 
           name="designDimensions"
           id="design-dimensions"
@@ -30,6 +60,7 @@ export default class DesignDimensions extends Component {
           width={this.state.width}
           height={this.state.height}
         />
+        {this.renderResults()}
       </div>
     )
   }

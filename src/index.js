@@ -8,8 +8,6 @@ export default class App extends Component {
   constructor(props) {
     super();
 
-    // this.state.screenResolutions[0] = { width, height, percentage }
-
     const localStorageState = localStorage.getItem('state');
 
     if (localStorageState) {
@@ -82,8 +80,9 @@ export default class App extends Component {
       const data = e.clipboardData.getData('Text');
       let screenResolutions = {};
       
-      // MS Excel, even in macOS, uses \r returns instead of \n for line endings
-      const rows = data.split("\r");
+      const rows = data.split(/\r?\n/);
+
+      console.log('rows', rows);
 
       const lastRow = rows[rows.length - 1];
 
@@ -102,7 +101,7 @@ export default class App extends Component {
           return;
         }
           
-        percentage = Math.round(parseFloat(percentage/totalSessions) * 100);
+        percentage = Math.floor(parseFloat(percentage/totalSessions) * 100);
 
         const resolutionDimensions = resolution.split('x');
         
@@ -177,6 +176,7 @@ export default class App extends Component {
               screenResolutions={this.state.screenResolutions}
             />
             <DesignDimensions 
+              screenResolutions={this.state.screenResolutions}              
               dimensions={this.state.designDimensions}
               saveDesignDimensions={this.saveDesignDimensions.bind(this)}
             />

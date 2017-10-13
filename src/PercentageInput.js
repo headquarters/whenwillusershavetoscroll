@@ -34,12 +34,14 @@ export default class PercentageInput extends Component {
   }
 
 	render(props, state) {
-    return <input 
+    return <span>
+      <input 
               type="text" 
               name={props.name} 
               onKeyUp={this.enterPercentage.bind(this)} 
               value={this.state.percentage}
-          />;
+              class="percentage"
+          />%</span>;
   }
 
 }
