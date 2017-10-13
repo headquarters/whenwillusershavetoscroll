@@ -1,0 +1,76 @@
+html, body {
+	font: 14px/1.21 'Helvetica Neue', arial, sans-serif;
+	font-weight: 400;
+}
+
+.app {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+	text-align: center;
+}
+
+.workarea {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.workarea__panel:first-child {
+  width: 50%;
+}
+
+.canvas {
+  box-sizing: content-box; /* ensure inner canvas content area is 500px */
+  border: 1px solid #ccc;
+  padding: 20px;
+  width: 500px;
+  height: 500px;
+}
+
+.frame {
+  border: 1px solid #999;
+  background-color: rgba(0, 0, 0, 0.2 );
+  border-radius: 5px;
+  position: absolute;
+}
+
+.frame span {
+  font-size: 12px;
+  position: absolute;
+  bottom: 0;
+  right: 1px;
+}
+
+#size-1024x768 {
+  width: 102.4px;
+  height: 76.8px;
+}
+
+#size-1440x900 {
+  width: 144.0px;
+  height: 90.0px;
+}
+
+#size-1920x1080 {
+  width: 192.0px;
+  height: 108.0px;
+}
+
+#your-design {
+  border: 1px solid darkorange;
+  background-color: rgba(255, 150, 0, 0.8);
+  position: absolute;
+  width: 60px;
+  height: 140px;
+}
+
+.resolutions__label {
+  text-align: left;
+}
+
+.design-dimensions__label {
+  display: block;
+  font-weight: bold;
+}
