@@ -1,4 +1,6 @@
 import { Component } from 'preact';
+import ScreenResolutionInput from './ScreenResolutionInput';
+import PercentageInput from './PercentageInput';
 
 export default class ScreenResolutions extends Component {
   constructor(props) {
@@ -13,35 +15,6 @@ export default class ScreenResolutions extends Component {
     this.setState({
       screenResolutions: nextProps.screenResolutions
     });
-  }
-
-  parseResolution(resolutionString) {
-    const regexResult = /(\d+)\D+(\d+)/.exec(resolutionString);
-    
-    if (!regexResult) {
-      return {
-        width: 0,
-        height: 0
-      };
-    }
-
-    // regexResult[0] is full match, e.g. '1200 by 600'
-    const width = parseInt(regexResult[1], 10);
-    const height = parseInt(regexResult[2], 10);
-
-    return {
-      width,
-      height
-    };
-  }
-
-  enterResolution(event) {
-    const { width, height } = this.parseResolution(event.target.value);
-
-    // console.log(width, height);
-    if (width > 0 && height > 0) {
-      this.props.saveResolution(event.target.name, width, height);
-    }
   }
 
   enterPercentage(event) {
@@ -69,8 +42,32 @@ export default class ScreenResolutions extends Component {
           </thead>
           <tbody>
             <tr>
-              <td><input type="text" name="resolution1" onKeyUp={this.enterResolution.bind(this)} value={`${this.state.screenResolutions.resolution1.width}x${this.state.screenResolutions.resolution1.height}`}/></td>
+              <td>
+                <ScreenResolutionInput
+                  name="resolution2"
+                  width={this.state.screenResolutions.resolution1.width}
+                  height={this.state.screenResolutions.resolution1.height}
+                  saveResolution={this.props.saveResolution}
+                />
+              </td>
               <td><input type="text" name="percentage1" onKeyUp={this.enterPercentage.bind(this)} value={this.state.screenResolutions.resolution1.percentage}/></td>            
+            </tr>
+            <tr>
+              <td>
+                <ScreenResolutionInput
+                  name="resolution2"
+                  width={this.state.screenResolutions.resolution2.width}
+                  height={this.state.screenResolutions.resolution2.height}
+                  saveResolution={this.props.saveResolution}
+                />
+              </td>
+              <td>
+                <PercentageInput
+                  name="percentage2"
+                  percentage={this.state.screenResolutions.resolution2.percentage}
+                  savePercentage={this.props.savePercentage}
+                />
+              </td>
             </tr>
             {/* <tr>
               <td><input type="text" name="resolution2" onKeyUp={this.enterResolution.bind(this)} value={`${this.state.resolutions.resolution1.width}x${this.state.resolutions.resolution1.height}`}/></td>

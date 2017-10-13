@@ -1,6 +1,6 @@
 {
-  "name": "Preact CLI App",
-  "short_name": "Preact CLI App",
+  "name": "When will users have to scroll?",
+  "short_name": "Scrollcheck",
   "start_url": "/",
   "display": "standalone",
   "orientation": "portrait",

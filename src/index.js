@@ -1,20 +1,70 @@
 import './style';
 import { Component } from 'preact';
-import ScreenResolutions from './src/ScreenResolutions';
-import DesignDimensions from './src/DesignDimensions';
-import Canvas from './src/Canvas';
+import ScreenResolutions from './ScreenResolutions';
+import DesignDimensions from './DesignDimensions';
+import Canvas from './Canvas';
 
 export default class App extends Component {
   constructor(props) {
     super();
 
+    // this.state.screenResolutions[0] = { width, height, percentage }
     this.state = {
       screenResolutions: {
         resolution1: {
           width: 0,
           height: 0,
           percentage: 0
+        },
+        resolution2: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution3: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution4: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution5: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution6: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution7: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution8: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution9: {
+          width: 0,
+          height: 0,
+          percentage: 0
+        },
+        resolution10: {
+          width: 0,
+          height: 0,
+          percentage: 0
         }
+      },
+      designDimensions: {
+        width: 0,
+        height: 0
       }
     };
   }
@@ -68,6 +118,15 @@ export default class App extends Component {
     }.bind(this));
   }
 
+  saveDesignDimensions(name, width, height) {
+    this.setState({
+      designDimensions: {
+        width,
+        height
+      }
+    });
+  }
+
   // GOOD LORD THESE TWO FUNCTIONS FEEL SO CLUNKY...gotta be a better way to handle state
   saveResolution(resolutionName, width, height) {
     console.log(this.state);
@@ -97,7 +156,7 @@ export default class App extends Component {
 			<div class="app">
 				<h1>When will users have to scroll?</h1>
         <p>
-          Paste, or type in, the top 10 screen size resolutions from Google Analytics. Then enter the dimensions of your design.  
+          Paste, or type in, the top 10 screen size resolutions from Google Analytics. Then enter the dimensions of your design. Everything is 1/10th scale. 
         </p>
         <div class="workarea">
           <div class="workarea__panel">
@@ -106,10 +165,16 @@ export default class App extends Component {
               savePercentage={this.savePercentage.bind(this)}
               screenResolutions={this.state.screenResolutions}
             />
-            <DesignDimensions />
+            <DesignDimensions 
+              dimensions={this.state.designDimensions}
+              saveDesignDimensions={this.saveDesignDimensions.bind(this)}
+            />
           </div>
           <div class="workarea__panel">
-            <Canvas />
+            <Canvas 
+              screenResolutions={this.state.screenResolutions}
+              designDimensions={this.state.designDimensions}
+            />
           </div>
           
         </div>

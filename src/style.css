@@ -36,34 +36,17 @@ h1 {
   position: absolute;
 }
 
-.frame span {
+.frame__label {
   font-size: 12px;
   position: absolute;
   bottom: 0;
   right: 1px;
 }
 
-#size-1024x768 {
-  width: 102.4px;
-  height: 76.8px;
-}
-
-#size-1440x900 {
-  width: 144.0px;
-  height: 90.0px;
-}
-
-#size-1920x1080 {
-  width: 192.0px;
-  height: 108.0px;
-}
-
-#your-design {
+.the-design {
   border: 1px solid darkorange;
   background-color: rgba(255, 150, 0, 0.8);
   position: absolute;
-  width: 60px;
-  height: 140px;
 }
 
 .resolutions__label {
