@@ -9,64 +9,71 @@ export default class App extends Component {
     super();
 
     // this.state.screenResolutions[0] = { width, height, percentage }
-    this.state = {
-      screenResolutions: {
-        resolution1: {
-          width: 0,
-          height: 0,
-          percentage: 0
+
+    const localStorageState = localStorage.getItem('state');
+
+    if (localStorageState) {
+      this.state = JSON.parse(localStorageState);
+    } else {
+      this.state = {
+        screenResolutions: {
+          resolution1: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution2: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution3: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution4: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution5: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution6: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution7: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution8: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution9: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          },
+          resolution10: {
+            width: 0,
+            height: 0,
+            percentage: 0
+          }
         },
-        resolution2: {
+        designDimensions: {
           width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution3: {
-          width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution4: {
-          width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution5: {
-          width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution6: {
-          width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution7: {
-          width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution8: {
-          width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution9: {
-          width: 0,
-          height: 0,
-          percentage: 0
-        },
-        resolution10: {
-          width: 0,
-          height: 0,
-          percentage: 0
+          height: 0
         }
-      },
-      designDimensions: {
-        width: 0,
-        height: 0
-      }
-    };
+      };
+    }    
   }
 
   componentDidMount() {
@@ -116,6 +123,10 @@ export default class App extends Component {
       }
       
     }.bind(this));
+  }
+
+  componentDidUpdate() {
+    localStorage.setItem('state', JSON.stringify(this.state));
   }
 
   saveDesignDimensions(name, width, height) {
