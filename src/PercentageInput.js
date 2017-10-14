@@ -1,4 +1,4 @@
-import { Component } from 'preact';
+import { Component } from "preact";
 
 export default class PercentageInput extends Component {
   constructor(props) {
@@ -12,17 +12,17 @@ export default class PercentageInput extends Component {
   componentWillReceiveProps(nextProps) {
     this.setState({
       percentage: nextProps.percentage
-    })
+    });
   }
 
   enterPercentage(event) {
     const valueInt = parseInt(event.target.value, 10);
-    
+
     if (!event.target.value || Number.isNaN(valueInt)) {
       return;
     }
 
-    const name = 'resolution' + event.target.name[event.target.name.length - 1];
+    const name = "resolution" + event.target.name[event.target.name.length - 1];
 
     let percentage = Math.abs(valueInt);
 
@@ -33,15 +33,17 @@ export default class PercentageInput extends Component {
     this.props.savePercentage(name, percentage);
   }
 
-	render(props, state) {
-    return <span>
-      <input 
-              type="text" 
-              name={props.name} 
-              onKeyUp={this.enterPercentage.bind(this)} 
-              value={this.state.percentage}
-              class="percentage"
-          />%</span>;
+  render(props, state) {
+    return (
+      <span>
+        <input
+          type="text"
+          name={props.name}
+          onKeyUp={this.enterPercentage.bind(this)}
+          value={this.state.percentage}
+          class="percentage"
+        />%
+      </span>
+    );
   }
-
 }

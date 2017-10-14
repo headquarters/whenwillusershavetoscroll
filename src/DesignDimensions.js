@@ -1,5 +1,5 @@
-import { Component } from 'preact';
-import ScreenResolutionInput from './ScreenResolutionInput';
+import { Component } from "preact";
+import ScreenResolutionInput from "./ScreenResolutionInput";
 
 export default class DesignDimensions extends Component {
   constructor(props) {
@@ -26,11 +26,13 @@ export default class DesignDimensions extends Component {
     let scrollWidthPercentage = 0;
     let scrollHeightPercentage = 0;
 
-    const totalPercentage = Object.values(this.props.screenResolutions).reduce((sum, res) => {
-      return sum + res.percentage; 
+    const totalPercentage = Object.values(
+      this.props.screenResolutions
+    ).reduce((sum, res) => {
+      return sum + res.percentage;
     }, 0);
 
-    Object.values(this.props.screenResolutions).map((res) => {
+    Object.values(this.props.screenResolutions).map(res => {
       if (this.state.width > res.width) {
         scrollWidthPercentage += res.percentage;
       }
@@ -38,22 +40,32 @@ export default class DesignDimensions extends Component {
       if (this.state.height > res.height) {
         scrollHeightPercentage += res.percentage;
       }
-    });    
+    });
 
     return (
       <p class="results">
-        The screen resolutions provided represent <strong>{totalPercentage}% of all your users' screen resolutions</strong>.
-        Of all your users, <strong>{scrollWidthPercentage}% will have to scroll horizontally</strong>, <strong>{scrollHeightPercentage}% will have to scroll vertically</strong>.
+        The screen resolutions provided represent{" "}
+        <strong>
+          {totalPercentage}% of all your users' screen resolutions
+        </strong>. Of all your users,{" "}
+        <strong>
+          {scrollWidthPercentage}% will have to scroll horizontally
+        </strong>,{" "}
+        <strong>
+          {scrollHeightPercentage}% will have to scroll vertically
+        </strong>.
       </p>
-    )
+    );
   }
 
   render(props, state) {
     return (
       <div class="design-dimensions">
         <h2>Your design</h2>
-        <label class="design-dimensions__label" for="design-dimensions">Screen resolution</label>
-        <ScreenResolutionInput 
+        <label class="design-dimensions__label" for="design-dimensions">
+          Screen resolution
+        </label>
+        <ScreenResolutionInput
           name="designDimensions"
           id="design-dimensions"
           saveResolution={this.props.saveDesignDimensions}
@@ -62,6 +74,6 @@ export default class DesignDimensions extends Component {
         />
         {this.renderResults()}
       </div>
-    )
+    );
   }
 }

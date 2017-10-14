@@ -1,4 +1,4 @@
-import { Component } from 'preact';
+import { Component } from "preact";
 
 export default class ScreenResolutionInput extends Component {
   constructor(props) {
@@ -11,19 +11,19 @@ export default class ScreenResolutionInput extends Component {
   }
 
   defaultProps = {
-    id: ''
+    id: ""
   };
 
   componentWillReceiveProps(nextProps) {
     this.setState({
       width: nextProps.width,
       height: nextProps.height
-    })
+    });
   }
 
   enterScreenResolution() {
     const { width, height } = this.parseResolution(event.target.value);
-    
+
     if (width > 0 && height > 0) {
       this.props.saveResolution(event.target.name, width, height);
     }
@@ -31,7 +31,7 @@ export default class ScreenResolutionInput extends Component {
 
   parseResolution(resolutionString) {
     const regexResult = /(\d+)\D+(\d+)/.exec(resolutionString);
-    
+
     if (!regexResult) {
       return {
         width: 0,
@@ -49,14 +49,15 @@ export default class ScreenResolutionInput extends Component {
     };
   }
 
-	render(props, state) {
-    return <input 
-        type="text" 
-        name={props.name} 
+  render(props, state) {
+    return (
+      <input
+        type="text"
+        name={props.name}
         id={props.id}
-        onKeyUp={this.enterScreenResolution.bind(this)} 
+        onKeyUp={this.enterScreenResolution.bind(this)}
         value={`${this.state.width}x${this.state.height}`}
-    />;
+      />
+    );
   }
-
 }

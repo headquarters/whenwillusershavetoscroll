@@ -1,6 +1,6 @@
-import { Component } from 'preact';
-import ScreenResolutionInput from './ScreenResolutionInput';
-import PercentageInput from './PercentageInput';
+import { Component } from "preact";
+import ScreenResolutionInput from "./ScreenResolutionInput";
+import PercentageInput from "./PercentageInput";
 
 export default class ScreenResolutions extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ export default class ScreenResolutions extends Component {
   }
 
   renderScreenResolutionInputs() {
-    return Object.entries(this.state.screenResolutions).map((res) => {
+    return Object.entries(this.state.screenResolutions).map(res => {
       const name = res[0];
       const { width, height, percentage } = res[1];
 
@@ -34,18 +34,18 @@ export default class ScreenResolutions extends Component {
           </td>
           <td>
             <PercentageInput
-                name={`percent-${name}`}
-                percentage={percentage}
-                savePercentage={this.props.savePercentage}
-              />          
+              name={`percent-${name}`}
+              percentage={percentage}
+              savePercentage={this.props.savePercentage}
+            />
           </td>
         </tr>
-      )
+      );
     });
   }
 
-	render(props, state) {
-		return (
+  render(props, state) {
+    return (
       <div class="resolutions">
         <h2>Users' screen resolutions</h2>
         <table>
@@ -55,11 +55,9 @@ export default class ScreenResolutions extends Component {
               <th class="resolutions__label">Percentage of users</th>
             </tr>
           </thead>
-          <tbody>
-            {this.renderScreenResolutionInputs()}
-          </tbody>
+          <tbody>{this.renderScreenResolutionInputs()}</tbody>
         </table>
       </div>
-		);
-	}
+    );
+  }
 }
