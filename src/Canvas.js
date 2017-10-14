@@ -1,14 +1,12 @@
 import { Component } from 'preact';
 
 export default class Canvas extends Component {
-  SCALE_FACTOR = 10
+  SCALE_FACTOR = 5;
 
   renderFrames() {
-    const SCALE_FACTOR = 10;
-
     return Object.values(this.props.screenResolutions).map((res) => {
       if (res.width > 100 && res.height > 100) {
-        return <div style={{ width: res.width/SCALE_FACTOR, height: res.height/SCALE_FACTOR }} class="frame">
+        return <div style={{ width: res.width/this.SCALE_FACTOR, height: res.height/this.SCALE_FACTOR }} class="frame">
             <span class="frame__label">{res.width}x{res.height}</span>
           </div>;
       }      
@@ -16,7 +14,6 @@ export default class Canvas extends Component {
   }
 
   renderDesignFrame() {
-    
     const { width, height } = this.props.designDimensions;
     console.log(width, height, width > 100 && height > 100)
     if (width > 100 && height > 100) {
@@ -31,6 +28,7 @@ export default class Canvas extends Component {
       <div class="canvas">
         {this.renderFrames()}
         {this.renderDesignFrame()}
+        <span class="canvas__disclaimer">1/5th scale</span>
       </div>
     );    
   }

@@ -37,6 +37,14 @@ h1 {
   padding: 20px;
   width: 500px;
   height: 500px;
+  position: relative;
+}
+
+.canvas__disclaimer {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  font-size: 12px;
 }
 
 .frame {

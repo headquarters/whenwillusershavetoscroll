@@ -24,7 +24,6 @@ export default class ScreenResolutionInput extends Component {
   enterScreenResolution() {
     const { width, height } = this.parseResolution(event.target.value);
     
-    // console.log(width, height);
     if (width > 0 && height > 0) {
       this.props.saveResolution(event.target.name, width, height);
     }
@@ -52,12 +51,12 @@ export default class ScreenResolutionInput extends Component {
 
 	render(props, state) {
     return <input 
-              type="text" 
-              name={props.name} 
-              id={props.id}
-              onKeyUp={this.enterScreenResolution.bind(this)} 
-              value={`${this.state.width}x${this.state.height}`}
-          />;
+        type="text" 
+        name={props.name} 
+        id={props.id}
+        onKeyUp={this.enterScreenResolution.bind(this)} 
+        value={`${this.state.width}x${this.state.height}`}
+    />;
   }
 
 }

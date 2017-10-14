@@ -10,6 +10,7 @@ export default class App extends Component {
 
     const localStorageState = localStorage.getItem('state');
 
+    // This data structure for state feels very clunky. Gotta be a better way...
     if (localStorageState) {
       this.state = JSON.parse(localStorageState);
     } else {
@@ -75,19 +76,16 @@ export default class App extends Component {
   }
 
   componentDidMount() {
-
     document.addEventListener('paste', function(e) {
       const data = e.clipboardData.getData('Text');
       let screenResolutions = {};
       
-      const rows = data.split(/\r?\n/);
-
+      const rows = data.split(/\r\n|\r|\n/g);
       console.log('rows', rows);
-
       const lastRow = rows[rows.length - 1];
-
+      // Excel columns are separated by tabs
       const splitLastRow = lastRow.split("\t");
-
+      // Get the last row that represents the total number of sessions for this time period (beyond the top 10)
       const totalSessions = splitLastRow[1];
 
       rows.forEach(function(row, index) {
@@ -103,8 +101,7 @@ export default class App extends Component {
           
         percentage = Math.floor(parseFloat(percentage/totalSessions) * 100);
 
-        const resolutionDimensions = resolution.split('x');
-        
+        const resolutionDimensions = resolution.split('x');        
         const width = parseInt(resolutionDimensions[0], 10);
         const height = parseInt(resolutionDimensions[1], 10);
 
@@ -137,13 +134,10 @@ export default class App extends Component {
     });
   }
 
-  // GOOD LORD THESE TWO FUNCTIONS FEEL SO CLUNKY...gotta be a better way to handle state
   saveResolution(resolutionName, width, height) {
-    console.log(this.state);
     let screenResolutions = this.state.screenResolutions;
 
-    screenResolutions[resolutionName].width = width;
-    
+    screenResolutions[resolutionName].width = width;    
     screenResolutions[resolutionName].height = height;
 
     this.setState({
@@ -166,7 +160,8 @@ export default class App extends Component {
 			<div class="app">
 				<h1>When will users have to scroll?</h1>
         <p>
-          Paste, or type in, the top 10 screen size resolutions from Google Analytics. Then enter the dimensions of your design. Everything is 1/10th scale. 
+          Paste, or type in, the top 10 screen size resolutions from Google Analytics. 
+          Then enter the dimensions of your design.
         </p>
         <div class="workarea">
           <div class="workarea__panel">
@@ -186,8 +181,7 @@ export default class App extends Component {
               screenResolutions={this.state.screenResolutions}
               designDimensions={this.state.designDimensions}
             />
-          </div>
-          
+          </div>          
         </div>
 			</div>
 		);
