@@ -25,7 +25,6 @@ export default class Canvas extends Component {
 
   renderDesignFrame() {
     const { width, height } = this.props.designDimensions;
-    console.log(width, height, width > 100 && height > 100);
     if (width > 100 && height > 100) {
       return (
         <div
