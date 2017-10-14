@@ -8,8 +8,9 @@ import manifest from './manifest.json';
  * @param {WebpackConfigHelpers} helpers - object with useful helpers when working with config.
  **/
 export default function (config, env, helpers) {
-  /** you can change config here **/
   const htmlWebpackPlugin = helpers.getPluginsByName(config, 'HtmlWebpackPlugin')[0];
 
-  htmlWebpackPlugin.plugin.options.title = manifest.name;
+  if (htmlWebpackPlugin) {
+    htmlWebpackPlugin.plugin.options.title = manifest.name;
+  }  
 }
