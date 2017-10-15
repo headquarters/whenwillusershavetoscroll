@@ -86,3 +86,19 @@ h1 {
   padding: 10px;
   margin-right: 10px;
 }
+
+.example__action:after {
+  content: "\025B8";
+}
+
+.example__action.active:after {
+  content: "\025BE";
+  
+}
+
+.example__image {
+  max-width: 90%;
+  display: block;
+  margin: 20px;
+
+}

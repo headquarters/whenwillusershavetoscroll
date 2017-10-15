@@ -3,6 +3,7 @@ import { Component } from "preact";
 import ScreenResolutions from "./ScreenResolutions";
 import DesignDimensions from "./DesignDimensions";
 import Canvas from "./Canvas";
+import Example from './Example';
 
 export default class App extends Component {
   constructor(props) {
@@ -164,6 +165,7 @@ export default class App extends Component {
           Paste, or type in, the top 10 screen size resolutions from Google
           Analytics. Then enter the dimensions of your design.
         </p>
+        <Example />
         <div class="workarea">
           <div class="workarea__panel">
             <ScreenResolutions
